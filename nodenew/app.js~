@@ -1,0 +1,53 @@
+var http=require("https");
+var url = 'https://affiliate-api.flipkart.net/affiliate/api/carehello.json';
+var bodyParser = require('body-parser');
+var requ = require('request');
+var jsonParser = bodyParser.json();
+
+var request=http.get(url,function(response){
+var buffer="";
+var api="";
+response.on("data",function(chunk){
+buffer+=chunk;});
+response.on("end",function(err)
+{
+var data=JSON.parse(buffer);
+
+ api=data.apiGroups.affiliate.apiListings.laptops.availableVariants["v0.1.0"].get;
+console.log(api);
+
+var username = 'care@hellobuddy.in'
+var password = 'buddyemi'
+var options = {
+  url: api,
+	  auth: {
+	   
+    username: username,
+    password: password
+  },
+ method: 'GET',
+  headers: { //We can define headers too
+        'Fk-Affiliate-Id': 'carehello',
+        'Fk-Affiliate-Token': 'c4ccb69921b94f5ab7c7cb3936ab1291'
+    }
+}
+
+requ(options, function (err, res, body) {
+  if (err) {
+    console.dir(err)
+    return
+  }
+
+ 
+var data2=JSON.parse(body);
+ console.dir(data2.nextUrl);
+api=data2.nextUrl;
+
+})
+
+
+});
+
+
+});
+
