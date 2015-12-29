@@ -12,10 +12,10 @@ var tc=0;
 //var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
-var urlmongo = 'mongodb://buddyadmin:memongosh1@54.169.129.170:27017/buddydb';
+var urlmongo = 'mongodb://buddyadmin:memongosh1@54.255.147.43:27017/buddydb';
 //MongoClient.connect(urlmongo,function(err,db){
 
-var job = new cron.CronJob('0 */45 * * * *', function() {
+var job = new cron.CronJob('* * * * *', function() {
 
 //
 //var db = monk('54.169.129.170:27017/meshdb', {
@@ -186,7 +186,7 @@ map2[items]=item2;
 
 var e=0;
 var db = require('monk')(urlmongo);
-var users = db.get('flipkartProducts');
+var users = db.get('flipkartProducts1');
 var q = async.queue(function (task, callback) {
     //console.log('hello ' + e+++task.doc);
 
